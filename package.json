@@ -1,0 +1,39 @@
+{
+    "name": "v-image-magnifier",
+    "version": "1.0.0",
+    "description": "A Vue 3 plugin that provides interactive image zoom functionality. Allow users to zoom in on an image by hovering over it, providing an enlarged view of the corresponding part of the image.", 
+    "author": "Florian CHANCELADE <florian.chancelade@gmail.com>",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/fchancel/v-image-magnifier"
+    },
+    "scripts": {
+      "build": "rollup -c"
+    },
+    "keywords": [
+      "vue",
+      "magnifier",
+      "zoom",
+      "plugin",
+      "image"
+    ],
+    "bugs": {
+      "url": "https://github.com/fchancel/v-image-magnifier/issues"
+    },
+    "homepage": "https://github.com/fchancel/v-image-magnifier#readme",
+    "peerDependencies": {
+      "vue": "^3.0.0"
+    },
+    "devDependencies": {
+      "@rollup/plugin-terser": "0.4.1",
+      "rollup": "^2.0.0",
+      "rollup-plugin-typescript2": "^0.34.1",
+      "typescript": "5.0.4"
+    },
+    "files": [
+      "dist"
+    ]
+  }
