@@ -1,5 +1,5 @@
 import type { createApp } from "vue";
-import VImagineMagnifier from "./v-image-magnifier.vue";
+import VImagineMagnifier from "./VImageMagnifier.vue";
 import type { Options } from "./interfaces";
 
 export default {

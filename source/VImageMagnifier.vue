@@ -1,21 +1,11 @@
 <template>
-  <div 
+  <div
     class="img-zoomer-box"
-    :class="{ 'cursor-none': cursorNone && !deactivate,
-              'fit-content': fitContent,
-              'own-width': !fitContent
-            }"
+    :class="{ 'cursor-none': cursorNone && !deactivate, 'fit-content': fitContent, 'own-width': !fitContent }"
     ref="imgZoomerBox"
     @mousemove="zoomImage"
   >
-    <img
-      :src="src"
-      class="original-img"
-      :class="{imgClass}"
-      :alt="altImage"
-      ref="original"
-      @load="setImageSize"
-    />
+    <img :src="src" class="original-img" :class="{ imgClass }" :alt="altImage" ref="original" @load="setImageSize" />
     <div v-if="!deactivate" class="magnified-img" ref="magnified"></div>
   </div>
 </template>
@@ -34,14 +24,14 @@ const props = withDefaults(defineProps<Options>(), {
   deactivate: false,
   backgroundColor: "#ffff",
   cursorNone: true,
-  magnifiedBorderRadius: 100,
+  magnifiedBorderRadius: 50,
   magnifiedBorderSize: 4,
   magnifiedBorderColor: "#ffff",
   magnifiedBorderStyle: "solid",
   zIndex: 99,
   boxShadow: "0 5px 10px -2px rgba(0, 0, 0, 0.5)",
   magnifiedTransition: "opacity 0.2s",
-  fitContent: true
+  fitContent: true,
 });
 
 //*********************************** */
@@ -49,18 +39,24 @@ const props = withDefaults(defineProps<Options>(), {
 //*********************************** */
 
 const imgZoomerBox = ref(); // Ref to images box HTML Element
-const magnified = ref(); // Ref to magnified HTML Element 
-const original = ref(); // Ref to original image HTML Element 
+const magnified = ref(); // Ref to magnified HTML Element
+const original = ref(); // Ref to original image HTML Element
 
 const originalWidth = ref(0);
 const originalHeight = ref(0);
+
+const bgPosX = ref(0);
+const bgPosY = ref(0);
+
+const leftPos = ref(0);
+const topPos = ref(0);
 
 //*********************************** */
 //                METHODS             */
 //*********************************** */
 
 onMounted(() => {
-  setImageSize()
+  setImageSize();
 });
 
 const setImageSize = () => {
@@ -72,19 +68,18 @@ const setImageSize = () => {
 const zoomImage = (e: MouseEvent) => {
   if (!props.deactivate) {
     // Manage the magnified Image
-    const style = magnified.value.style;
     const rect = imgZoomerBox.value.getBoundingClientRect();
     const scaleX = (original.value.naturalWidth / rect.width) * props.zoomFactor;
     const scaleY = (original.value.naturalHeight / rect.height) * props.zoomFactor;
-    
+
     const x = (e.clientX - rect.left) * scaleX - halfZoomSize.value;
     const y = (e.clientY - rect.top) * scaleY - halfZoomSize.value;
-    
-    style.backgroundPositionX = -x + "px";
-    style.backgroundPositionY = -y + "px";
-    style.left = e.clientX - rect.left - halfZoomSize.value + "px";
-    style.top = e.clientY - rect.top - halfZoomSize.value + "px";
-}
+
+    bgPosX.value = -x;
+    bgPosY.value = -y;
+    leftPos.value = e.clientX - rect.left - halfZoomSize.value;
+    topPos.value = e.clientY - rect.top - halfZoomSize.value;
+  }
 };
 
 //*********************************** */
@@ -95,6 +90,7 @@ const zoomImage = (e: MouseEvent) => {
 const halfZoomSize = computed(() => props.zoomSize / 2);
 
 const zoomSizeCss = computed(() => `${props.zoomSize}px`);
+
 const originalSizeCss = computed(
   () => `${originalWidth.value * props.zoomFactor}px ${originalHeight.value * props.zoomFactor}px`
 );
@@ -102,8 +98,19 @@ const backgroundCss = computed(() => `url("${props.src}") no-repeat ${props.back
 
 const borderRadiusCss = computed(() => `${props.magnifiedBorderRadius}%`);
 
-const borderCss = computed(()=> `${props.magnifiedBorderSize}px ${props.magnifiedBorderStyle} ${props.magnifiedBorderColor}`);
-const maxWidthCss = computed(()=> `${originalWidth}px}`);
+const borderCss = computed(
+  () => `${props.magnifiedBorderSize}px ${props.magnifiedBorderStyle} ${props.magnifiedBorderColor}`
+);
+
+const maxWidthCss = computed(() => `${originalWidth.value}px`);
+
+const backgroundPositionXCss = computed(() => `${bgPosX.value}px`);
+
+const backgroundPositionYCss = computed(() => `${bgPosY.value}px`);
+
+const leftPositionCss = computed(() => `${leftPos.value}px`);
+
+const topPositionCss = computed(() => `${topPos.value}px`);
 </script>
 
 <style scoped>
@@ -111,7 +118,7 @@ const maxWidthCss = computed(()=> `${originalWidth}px}`);
   cursor: none;
 }
 
-.fit-content{
+.fit-content {
   width: fit-content;
 }
 
@@ -138,11 +145,15 @@ const maxWidthCss = computed(()=> `${originalWidth}px}`);
   height: v-bind(zoomSizeCss);
   background: v-bind(backgroundCss);
   background-size: v-bind(originalSizeCss);
+  background-position-x: v-bind(backgroundPositionXCss);
+  background-position-y: v-bind(backgroundPositionYCss);
   border-radius: v-bind(borderRadiusCss);
   border: v-bind(borderCss);
   z-index: v-bind(zIndex);
   box-shadow: v-bind(boxShadow);
   transition: v-bind(magnifiedTransition);
+  left: v-bind(leftPositionCss);
+  top: v-bind(topPositionCss);
   pointer-events: none;
   position: absolute;
   max-width: v-bind(maxWidthCss);
