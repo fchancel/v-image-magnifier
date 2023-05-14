@@ -1,4 +1,5 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![build](https://img.shields.io/npm/v/v-image-magnifier)](https://www.npmjs.com/package/v-image-magnifier)
+
 <div align="center">
 <img src="https://github.com/fchancel/v-image-magnifier/blob/main/examples/logo.png?raw=true"/>
 </div>
