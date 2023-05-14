@@ -1,12 +1,13 @@
 {
-    "compilerOptions": {
-      "target": "es6",
-      "module": "es6",
-      "moduleResolution": "node",
-      "declaration": true,
-      "sourceMap": true,
-      "outDir": "dist"
-    },
-    "include": ["source/**/*"]
-  }
-  
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "source/**/*"
+  ],
+}

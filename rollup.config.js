@@ -1,6 +1,8 @@
-import terser from '@rollup/plugin-terser';
-import typescript from "rollup-plugin-typescript2";
+import terser from "@rollup/plugin-terser";
 import { defineConfig } from "rollup";
+import typescript from "rollup-plugin-typescript2";
+import postcss from "rollup-plugin-postcss";
+import vue from "rollup-plugin-vue";
 
 export default defineConfig({
   input: "source/index.ts",
@@ -25,6 +27,12 @@ export default defineConfig({
       sourcemap: true,
     },
   ],
-  plugins: [typescript()],
+  plugins: [
+    typescript(),
+    vue(),
+    postcss({
+      extract: true,
+    }),
+  ],
   external: ["vue"],
 });

@@ -34,11 +34,14 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitest/coverage-c8": "^0.31.0",
     "@vue/test-utils": "^2.3.2",
+    "@vue/compiler-sfc":"3.3.2",
     "jsdom": "^22.0.0",
     "rollup": "^2.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-vue":"^6.0.0",
     "typescript": "^5.0.4",
-    "vitest": "^0.31.0"
+    "vitest": "^0.31.0",
+    "rollup-plugin-postcss": "^4.0.2"
   },
   "files": [
     "dist"

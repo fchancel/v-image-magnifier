@@ -1,17 +1,17 @@
 import { createApp } from "vue";
-import VImagineMagnifier from "../source/VImageMagnifier.vue";
+import VImageMagnifier from "../source/VImageMagnifier.vue";
 import { mount } from "@vue/test-utils";
 import plugin from "../source/index";
 
 describe("Plugin installation", () => {
-  test("registers VImagineMagnifier component", () => {
+  test("registers VImageMagnifier component", () => {
     const app = createApp({});
 
-    expect(app.component("VImagineMagnifier")).toBeUndefined();
+    expect(app.component("VImageMagnifier")).toBeUndefined();
 
     app.use(plugin);
 
-    expect(app.component("VImagineMagnifier")).toBeDefined();
+    expect(app.component("VImageMagnifier")).toBeDefined();
   });
 
   test("sets default props", () => {
@@ -23,7 +23,7 @@ describe("Plugin installation", () => {
 
     app.use(plugin, options);
 
-    const component = mount(VImagineMagnifier, {
+    const component = mount(VImageMagnifier, {
       props: {
         src: "test.jpg",
       },

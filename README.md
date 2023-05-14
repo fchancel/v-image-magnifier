@@ -40,14 +40,14 @@ npm install --save v-image-magnifier
 
 ### Global Usage
 
-To use VImagineMagnifier globally in your Vue.js application, you can install it using `app.use` in the entry point of your main application file.
+To use VImageMagnifier globally in your Vue.js application, you can install it using `app.use` in the entry point of your main application file.
 
 ```javascript
 import { createApp } from "vue";
-import VImagineMagnifier from "v-imagine-magnifier";
+import VImageMagnifier from "v-image-magnifier";
 
 const app = createApp(App);
-app.use(VImagineMagnifierPlugin, {
+app.use(VImageMagnifierPlugin, {
          // Change options here
          zoomSize: 150,
          zoomFactor: 2,
@@ -56,33 +56,33 @@ app.use(VImagineMagnifierPlugin, {
 app.mount("#app");
 ```
 
-By passing an options object to app.use, you can customize the behavior of VImagineMagnifier. In the example above, the zoomFactor option is set to 2, which increases the zoom level, and the zoomSize option is set to 150 for a bigger magnifying glass.
+By passing an options object to app.use, you can customize the behavior of VImageMagnifier. In the example above, the zoomFactor option is set to 2, which increases the zoom level, and the zoomSize option is set to 150 for a bigger magnifying glass.
 
-These options will be applied globally to all instances of the VImagineMagnifier component in your application.
+These options will be applied globally to all instances of the VImageMagnifier component in your application.
 
 
 #### Importing in a Specific Component
 
-If you prefer to use VImagineMagnifier only in a specific component, you can import it directly into that component.
+If you prefer to use VImageMagnifier only in a specific component, you can import it directly into that component.
 
 ```javascript
 <template>
-  <VImagineMagnifier src="path/to/my/file.png" />
+  <VImageMagnifier src="path/to/my/file.png" />
 </template>
 
 <script setup>
 import { createApp } from "vue";
-import VImagineMagnifier from "v-imagine-magnifier";
+import VImageMagnifier from "v-image-magnifier";
 </setup>
 ```
 
-Make sure to import the VImagineMagnifier component in the specific component where you want to use it.
+Make sure to import the VImageMagnifier component in the specific component where you want to use it.
 
 ### Example Usage
 
 ```javascript
 <template>
-  <VImagineMagnifier 
+  <VImageMagnifier 
       src="path/to/my/file.png"
       :zoomSize="200
       :zoomFactore="2"
@@ -92,7 +92,7 @@ Make sure to import the VImagineMagnifier component in the specific component wh
 
 <script setup>
 import { createApp } from "vue";
-import VImagineMagnifier from "v-imagine-magnifier";
+import VImageMagnifier from "v-image-magnifier";
 </setup>
 ```
 

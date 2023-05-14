@@ -1,13 +1,13 @@
-import VImagineMagnifier from "../source/VImageMagnifier.vue";
+import VImageMagnifier from "../source/VImageMagnifier.vue";
 import { shallowMount } from "@vue/test-utils";
 import { expect, vi } from "vitest";
 
-describe("VImagineMagnifier", () => {
+describe("VImageMagnifier", () => {
   let wrapper;
   let component;
 
   beforeEach(async () => {
-    wrapper = shallowMount(VImagineMagnifier, {
+    wrapper = shallowMount(VImageMagnifier, {
       props: {
         src: "test.jpg",
       },
