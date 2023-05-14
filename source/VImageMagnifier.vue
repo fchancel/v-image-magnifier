@@ -87,13 +87,13 @@ onMounted(() => {
   setImageSize();
 });
 
-const imageIsLoaded = () => {
+const imageIsLoaded = () => {  
+  setImageSize();
+  emits("loaded");
+  
   if (!props.deactivate) {
     isDeactivate.value = false;
   }
-
-  setImageSize();
-  emits("loaded");
 };
 
 const setImageSize = () => {

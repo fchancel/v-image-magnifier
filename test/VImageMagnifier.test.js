@@ -65,6 +65,7 @@ describe("VImageMagnifier", () => {
     });
 
     test("cursorNone options is true - cursor-none should be exist on img-zoomer-box", async () => {
+      component.imageIsLoaded()
       await wrapper.setProps({ cursorNone: true });
       expect(wrapper.classes()).toContain("cursor-none");
     });
@@ -72,6 +73,23 @@ describe("VImageMagnifier", () => {
     test("cursorNone options is false - cursor-none should not be exist on img-zoomer-box", async () => {
       await wrapper.setProps({ cursorNone: false });
       expect(wrapper.classes()).not.toContain("cursor-none");
+    });
+
+    test("imageIsLoaded - props deactivate = false - isDeactivate should be set at false", async () => {
+      await wrapper.setProps({ deactivate: false });
+      expect(component.isDeactivate).toBe(true);
+      
+      component.imageIsLoaded()
+
+      expect(component.isDeactivate).toBe(false);
+    });
+
+    test("imageIsLoaded - props deactivate = true - isDeactivate should be set at true", async () => {
+      await wrapper.setProps({ deactivate: true });
+      
+      component.imageIsLoaded()
+
+      expect(component.isDeactivate).toBe(true);
     });
 
     test("setImageSize - originalHeight & originalWidth should be 100", () => {
@@ -123,6 +141,7 @@ describe("VImageMagnifier", () => {
       };
 
       await wrapper.setProps({ deactivate: false });
+      component.imageIsLoaded()
 
       await wrapper.trigger("mousemove", {
         clientX: 100,
