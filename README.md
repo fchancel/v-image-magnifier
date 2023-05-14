@@ -61,24 +61,6 @@ By passing an options object to app.use, you can customize the behavior of VImag
 
 These options will be applied globally to all instances of the VImageMagnifier component in your application.
 
-
-#### Importing in a Specific Component
-
-If you prefer to use VImageMagnifier only in a specific component, you can import it directly into that component.
-
-```javascript
-<template>
-  <VImageMagnifier src="path/to/my/file.png" />
-</template>
-
-<script setup>
-import { createApp } from "vue";
-import VImageMagnifier from "v-image-magnifier";
-</setup>
-```
-
-Make sure to import the VImageMagnifier component in the specific component where you want to use it.
-
 ### Example Usage
 
 ```javascript
@@ -91,10 +73,6 @@ Make sure to import the VImageMagnifier component in the specific component wher
    />
 </template>
 
-<script setup>
-import { createApp } from "vue";
-import VImageMagnifier from "v-image-magnifier";
-</setup>
 ```
 
 ## Example
