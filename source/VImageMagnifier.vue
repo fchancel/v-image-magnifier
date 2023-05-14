@@ -1,17 +1,21 @@
 <template>
   <div
     class="img-zoomer-box"
-    :class="{ 'cursor-none': cursorNone && !deactivate, 'fit-content': fitContent, 'own-width': !fitContent }"
+    :class="{ 'cursor-none': cursorNone && !isDeactivate, 'fit-content': fitContent, 'own-width': !fitContent }"
     ref="imgZoomerBox"
     @mousemove="zoomImage"
   >
-    <img :src="src" class="original-img" :class="{ imgClass }" :alt="altImage" ref="original" @load="setImageSize" />
-    <div v-if="!deactivate" class="magnified-img" ref="magnified"></div>
+    <img :src="src" class="original-img" :class="{ imgClass }" :alt="altImage" ref="original" @load="imageIsLoaded" />
+    <div v-if="!isDeactivate" class="magnified-img" ref="magnified"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, onMounted } from "vue";
+
+//*********************************** */
+//                INTERFACES          */
+//*********************************** */
 
 export interface Options {
   src: string;
@@ -32,9 +36,8 @@ export interface Options {
   fitContent?: boolean;
 }
 
-
 //*********************************** */
-//                PROPS               */
+//                PROPS & EMITS       */
 //*********************************** */
 
 const props = withDefaults(defineProps<Options>(), {
@@ -53,6 +56,10 @@ const props = withDefaults(defineProps<Options>(), {
   fitContent: true,
 });
 
+const emits = defineEmits<{
+  (e: "loaded"): void;
+}>();
+
 //*********************************** */
 //                DATA                */
 //*********************************** */
@@ -70,6 +77,8 @@ const bgPosY = ref(0);
 const leftPos = ref(0);
 const topPos = ref(0);
 
+const isDeactivate = ref(true);
+
 //*********************************** */
 //                METHODS             */
 //*********************************** */
@@ -78,6 +87,15 @@ onMounted(() => {
   setImageSize();
 });
 
+const imageIsLoaded = () => {
+  if (!props.deactivate) {
+    isDeactivate.value = false;
+  }
+
+  setImageSize();
+  emits("loaded");
+};
+
 const setImageSize = () => {
   // Set width and height size with the size of original image
   originalWidth.value = original.value.naturalWidth;
@@ -85,7 +103,7 @@ const setImageSize = () => {
 };
 
 const zoomImage = (e: MouseEvent) => {
-  if (!props.deactivate) {
+  if (!isDeactivate.value) {
     // Manage the magnified Image
     const rect = imgZoomerBox.value.getBoundingClientRect();
     const scaleX = (original.value.naturalWidth / rect.width) * props.zoomFactor;

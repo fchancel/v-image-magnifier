@@ -37,6 +37,12 @@ npm install --save v-image-magnifier
 | zoomSize   | number    |  100   | Size of the magnifying glass.    |  |
 | zoomFactor   | number    |   1.8  | Zoom factor (Allows you to manage the power of the zoom).    |  |
 
+## Events
+| Name  | Description  | 
+| ------- | -------- |
+| loaded   | Event sent when the image is fully loaded by the browser    |
+
+
 ## Usage
 
 ### Global Usage
