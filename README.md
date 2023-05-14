@@ -97,4 +97,4 @@ Contributions, issues and feature requests are welcome! Feel free to check the [
 
 ## License
 
-V-Privacy is licensed under the MIT License. See the [LICENSE](https://github.com/fchancel/v-image-magnifier/blob/main/LICENSE) file for more information.
+v-image-magnifier is licensed under the MIT License. See the [LICENSE](https://github.com/fchancel/v-image-magnifier/blob/main/LICENSE) file for more information.
