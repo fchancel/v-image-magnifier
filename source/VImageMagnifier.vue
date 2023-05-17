@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from "vue";
+import { computed, ref, onMounted, watch } from "vue";
 
 //*********************************** */
 //                INTERFACES          */
@@ -59,6 +59,15 @@ const props = withDefaults(defineProps<Options>(), {
 const emits = defineEmits<{
   (e: "loaded"): void;
 }>();
+//*********************************** */
+//                WATCHER             */
+//*********************************** */
+
+watch(() => props.deactivate, () => {
+  if (isLoaded) {
+    isDeactivate.value = props.deactivate;
+  }
+})
 
 //*********************************** */
 //                DATA                */
@@ -77,6 +86,8 @@ const bgPosY = ref(0);
 const leftPos = ref(0);
 const topPos = ref(0);
 
+let isLoaded = false; 
+
 const isDeactivate = ref(true);
 
 //*********************************** */
@@ -90,6 +101,7 @@ onMounted(() => {
 const imageIsLoaded = () => {  
   setImageSize();
   emits("loaded");
+  isLoaded = true
   
   if (!props.deactivate) {
     isDeactivate.value = false;
