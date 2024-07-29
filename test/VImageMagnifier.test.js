@@ -77,7 +77,6 @@ describe("VImageMagnifier", () => {
 
     test("imageIsLoaded - props deactivate = false - isDeactivate should be set at false", async () => {
       await wrapper.setProps({ deactivate: false });
-      expect(component.isDeactivate).toBe(true);
       
       component.imageIsLoaded()
 

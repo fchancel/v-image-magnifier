@@ -6,8 +6,8 @@
     @mousemove="zoomImage"
   >
     <img :src="src" class="original-img" :class="{ imgClass }" :alt="altImage" ref="original" @load="imageIsLoaded" />
-    <div v-if="!isDeactivate" class="magnified-img" ref="magnified"></div>
-  </div>
+  <div v-if="!isDeactivate" class="magnified-img" ref="magnified"></div>
+</div>
 </template>
 
 <script setup lang="ts">
@@ -86,9 +86,9 @@ const bgPosY = ref(0);
 const leftPos = ref(0);
 const topPos = ref(0);
 
-let isLoaded = false; 
+const isLoaded = ref(false);
 
-const isDeactivate = ref(true);
+const isDeactivate = ref(props.deactivate);
 
 //*********************************** */
 //                METHODS             */
@@ -101,7 +101,7 @@ onMounted(() => {
 const imageIsLoaded = () => {  
   setImageSize();
   emits("loaded");
-  isLoaded = true
+  isLoaded.value = true;
   
   if (!props.deactivate) {
     isDeactivate.value = false;
@@ -143,6 +143,7 @@ const zoomSizeCss = computed(() => `${props.zoomSize}px`);
 const originalSizeCss = computed(
   () => `${originalWidth.value * props.zoomFactor}px ${originalHeight.value * props.zoomFactor}px`
 );
+
 const backgroundCss = computed(() => `url("${props.src}") no-repeat ${props.backgroundColor}`);
 
 const borderRadiusCss = computed(() => `${props.magnifiedBorderRadius}%`);

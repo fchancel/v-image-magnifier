@@ -1,6 +1,6 @@
 {
   "name": "v-image-magnifier",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A Vue 3 plugin that provides interactive image zoom functionality. Allow users to zoom in on an image by hovering over it, providing an enlarged view of the corresponding part of the image.",
   "author": "Florian CHANCELADE <florian.chancelade@gmail.com>",
   "license": "MIT",
